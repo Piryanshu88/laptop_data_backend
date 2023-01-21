@@ -6,7 +6,9 @@ const { cartRouter } = require("./controller/cart.controller");
 const app = express();
 const cors = require("cors");
 
-app.use(cors());
+cors({
+  origin: "*",
+});
 
 require("dotenv").config();
 app.use(express.json());
