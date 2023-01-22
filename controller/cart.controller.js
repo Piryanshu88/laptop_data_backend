@@ -1,7 +1,5 @@
 const express = require("express");
-const {
-  loadData,
-} = require("../../client/laptop_wala/src/utils/accesslocalStorage");
+
 const { CartModel } = require("../model/cart.model");
 
 const app = express();
@@ -10,9 +8,7 @@ app.use(express.json());
 
 cartRouter.get("/", async (req, res) => {
   try {
-    const cartItems = await CartModel.find({
-      user: { email: loadData("dell_email") },
-    });
+    const cartItems = await CartModel.find();
     res.status(201).json({ cartItems, status: "success" });
   } catch (error) {
     return res.status(500).json({ message: error.message, status: "Failed" });
