@@ -27,6 +27,17 @@ cartRouter.post("/", async (req, res) => {
   }
 });
 
+cartRouter.delete("/:id", async (req, res) => {
+  try {
+    await CartModel.findByIdAndDelete({ _id: req.params.id });
+    return res
+      .status(201)
+      .json({ message: "deleted Successfully ", status: "success" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message, status: "Failed" });
+  }
+});
+
 module.exports = {
   cartRouter,
 };
